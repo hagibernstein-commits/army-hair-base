@@ -55,7 +55,7 @@ var pickD='normal';
 function rTitle(){
  var has=!!load();
  main.className='noscroll';
- main.innerHTML='<div class="title">'+mineSprite('rifle')+'<h1>מפקד הפאה</h1><div>בנה בסיס, גייס וצבא, אמן ושדרג והשתלט על כל המפה!</div>'+
+ main.innerHTML='<div class="title">'+mineSprite('rifle')+'<h1>מפקד הפאה</h1><div>בנה בסיס, גייס צבא, אמן ושדרג והשתלט על כל המפה!</div>'+
  (has?'<button class="btn green" id="bcont" style="font-size:22px;padding:12px 30px">▶ המשך משחק</button><div>או התחל מחדש:</div>':'')+
  '<div>רמת קושי:</div><div class="dif">'+Object.keys(E.DIFF).map(function(k){return '<button data-d="'+k+'" class="'+(pickD===k?'on':'')+'">'+E.DIFF[k].n+'</button>';}).join('')+'</div>'+
  '<button class="btn" id="bnew" style="font-size:20px;padding:10px 24px">'+(has?'משחק חדש (מוחק את הישן)':'התחל משחק!')+'</button></div>';
