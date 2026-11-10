@@ -1,4 +1,5 @@
-self.addEventListener('fetch',e=>{if(new URL(e.request.url).pathname==='/family-hub/gatekeeper.js'){e.respondWith(fetch(e.request,{cache:'reload'}));}});
+// Family gatekeeper: network first, cached copy so installed games can start offline.
+self.addEventListener('fetch',e=>{if(new URL(e.request.url).pathname==='/family-hub/gatekeeper.js'){e.respondWith(fetch(e.request,{cache:'reload'}).then(r=>{if(r.ok){const cp=r.clone();caches.open('fc-gatekeeper').then(c=>c.put(e.request,cp));}return r;}).catch(()=>caches.open('fc-gatekeeper').then(c=>c.match(e.request))));return;}});
 var CACHE='armyhair-v1-r2-family2';
 var FILES=['./','index.html','style.css','engine.js','sprites.js','app.js','manifest.webmanifest','icon-192.png','icon-512.png'];
 self.addEventListener('install',function(e){e.waitUntil(caches.open(CACHE).then(function(c){return c.addAll(FILES);}).then(function(){return self.skipWaiting();}));});
